@@ -54,24 +54,28 @@ class Register extends Component {
   render() {
     return (
       <form onSubmit={e => this.submitHandler(e)}>
+        Username:
         <input
           type='text'
           name='username'
           value={this.state.username}
           onChange={this.inputChangeHandler}
         ></input>
+        Email:
         <input
           type='email'
           name='email'
           value={this.state.email}
           onChange={this.inputChangeHandler}
         ></input>
+        Password:
         <input
           type='password'
           name='password1'
           value={this.state.password1}
           onChange={this.inputChangeHandler}
         ></input>
+        Confirm Password:
         <input
           type='password'
           name='password2'

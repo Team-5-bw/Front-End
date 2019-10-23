@@ -51,12 +51,14 @@ class Login extends Component {
   render() {
     return (
       <form onSubmit={e => this.submitHandler(e)}>
+        Username:
         <input
           type='text'
           name='username'
           value={this.state.username}
           onChange={this.inputChangeHandler}
         ></input>
+        Password:
         <input
           type='password'
           name='password'
