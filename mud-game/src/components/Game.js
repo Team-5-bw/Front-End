@@ -14,7 +14,10 @@ class Game extends Component {
           roomPlayers: "",
           username: "",
           uuid: "",
-          direction: ""
+          direction: "",
+          movePlayer: "",
+          errorMsg:"",
+          
         };
     }
     
