@@ -22,7 +22,7 @@ class Register extends Component {
       password1: password1,
       password2: password2
     });
-    const herokurl = 'https://lambda-mud-test.herokuapp.com';
+    const herokurl = 'https://team5-mud.herokuapp.com';
     console.log('this state', this.state);
 
     axios({
