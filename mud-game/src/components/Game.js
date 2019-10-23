@@ -17,14 +17,21 @@ class Game extends Component {
           direction: "",
           movePlayer: "",
           errorMsg:"",
-          
+
         };
     }
     
     componentDidMount() {
-        this.init()
+        this.init();
+        this.startE();
     };
 
+    pauseG = () => {
+        this.clickE();
+        this.pauseE();
+
+        document.addEventListener('click', this.resumeE())
+    };
 
     logout = () => {
         this.clickE();
@@ -64,7 +71,7 @@ class Game extends Component {
     };
 
     handleMove = direction => {
-        const herokurl: 'https://team5-mud.herokuapp.com';  // whats wrong here???
+        const herokurl: 'https://team5-mud.herokuapp.com'  // whats wrong here???
 
         axios({
             url: `${herokurl}/api/adv/move`, // confirm this is the correct path
@@ -100,7 +107,23 @@ class Game extends Component {
 
     ejectE = () => {
         document.getElementById('eject');
-    }
+    };
+
+    startE = () => {
+        document.getElementById('start');
+    };
+
+    errorE = () => {
+        document.getElementById('error');
+    };
+
+    pauseE = () => {
+        document.getElementById('pause');
+    };
+
+    resumeE = () => {
+        document.getElementById('resume');
+    };
     
     handleInputChange = e => {
         this.setState({ [e.target.name]: e.target.value });
