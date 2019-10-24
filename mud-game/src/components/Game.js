@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Fade from 'react-reveal';
 
-// import './css/game.css';
+import '../css/game.css';
+import ArrowW from '../images/arrow-w.png';
+import ArrowN from '../images/arrow-n.png';
+import ArrowS from '../images/arrow-s.png';
+import ArrowE from '../images/arrow-e.png';
 
 class Game extends Component {
     constructor(props) {
@@ -161,17 +165,27 @@ class Game extends Component {
 
         return (
             <Fade>
-                {this.state.errorMsg ? this.errorE(): ""}
-
                 <div className= 'main-container'>
-                    <div className= 'top-container'>
-                    
-                    </div>
-                    <div className= 'map-container'>
-                        <div className= 'map'>
-                            <div className= 'room-name'>
-
+                    <div className= 'map-container'>   
+                        <div id= 'map'>
+                            <div className= 'player'>
+                                <img className= 'player-icon' alt= 'Player Icon' src= 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif' />
                             </div>
+                        </div>
+                    </div>
+                    <div className= 'right-container'>
+                        <div className= 'top-container'> 
+                            {this.state.errorMsg ? this.errorE(): ""}
+                            <p>top container</p>
+                            {/* here goes the screen with the messages */}
+                        </div>    
+                        <div className= 'bottom-container'>
+                            <div className= 'arrows-cont'>
+                                <img id= 'arrow-w' alt= 'Arrow West' src= {ArrowW} />
+                                <img id= 'arrow-n' alt= 'Arrow North' src= {ArrowN} />
+                                <img id= 'arrow-s' alt= 'Arrow South' src= {ArrowS} />
+                                <img id= 'arrow-e' alt= 'Arrow East' src= {ArrowE} />
+                            </div> 
                         </div>
                     </div>
                 </div>
