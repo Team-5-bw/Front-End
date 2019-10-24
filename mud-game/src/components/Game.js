@@ -70,10 +70,10 @@ class Game extends Component {
         const key = localStorage.getItem('token');
 
         axios({
-            url: `${herokurl}/api/adv/init`,  // confirm this is the right path
+            url: `${herokurl}/api/adv/init`,
             method: 'GET',
             headers: {
-                Authentication: `${key}`
+                Authorization: `${key}`
             }
         })
         .then(res => {
@@ -96,10 +96,10 @@ class Game extends Component {
         const herokurl = 'https://team5-mud.herokuapp.com';
 
         axios({
-            url: `${herokurl}/api/adv/move`, // confirm this is the correct path
+            url: `${herokurl}/api/adv/move`,
             method: 'POST',
             headers: {
-                Authentication: `${this.state.token}`
+                Authorization: `${this.state.token}`
             },
             data: {
                 direction: direction 
@@ -111,12 +111,13 @@ class Game extends Component {
                 roomDescription: res.data.description,
                 roomPlayers: res.data.players,
                 errorMsg: res.data.error_msg,
-                movePlayer: true
+                movePlayer: true,
+                roomNum: this.data.room_number
             });
 
            if(!res.data.errorMsg){
                 this.state.rooms.forEach(room => {
-                    if(room.title === this.state.roomTitle){  // make sure it works
+                    if(room.room_number === this.state.roomNum){  // make sure it works
                         this.moveE();
                     }
                 })
@@ -160,16 +161,25 @@ class Game extends Component {
     };
 
     render() {
-        // const room = this.state.rooms;
-
+        const room = this.state.title;
+        const player = 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif'
         return (
             <Fade>
                 <div className= 'main-container'>
                     <div className= 'map-container'>   
                         <div id= 'map'>
-                            <div className= 'player'>
-                                <img id= 'player-icon' alt= 'Player Icon' src= 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif' />
-                            </div>
+                            {/* <div className= 'player'>
+                                <img className= 'player-icon' alt= 'Player Icon' src= {player} />
+                            </div> */}
+                            {room === 'room_1' ? (
+                                <img 
+                                    id= 'player-icon1' 
+                                    className= 'player-icon'
+                                    src= {player} />
+                                    
+                            ) : (
+                              "" 
+                            )};
                         </div>
                     </div>
                     <div className= 'right-container'>
@@ -180,10 +190,10 @@ class Game extends Component {
                         </div>    
                         <div className= 'bottom-container'>
                             <div className= 'arrows-cont'>
-                                <img id= 'arrow-w' alt= 'Arrow West' src= {ArrowW} />
-                                <img id= 'arrow-n' alt= 'Arrow North' src= {ArrowN} />
-                                <img id= 'arrow-s' alt= 'Arrow South' src= {ArrowS} />
-                                <img id= 'arrow-e' alt= 'Arrow East' src= {ArrowE} />
+                                <img id= 'arrow-w' alt= 'Arrow West' src= {ArrowW} onClick= {() => this.handleMove('w')}/>
+                                <img id= 'arrow-n' alt= 'Arrow North' src= {ArrowN} onClick= {() => this.handleMove('n')}/>
+                                <img id= 'arrow-s' alt= 'Arrow South' src= {ArrowS} onClick= {() => this.handleMove('s')}/>
+                                <img id= 'arrow-e' alt= 'Arrow East' src= {ArrowE} onClick= {() => this.handleMove('e')} />
                             </div> 
                         </div>
                     </div>
