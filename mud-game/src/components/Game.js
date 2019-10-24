@@ -93,7 +93,7 @@ class Game extends Component {
     };
 
     handleMove = direction => {
-        const herokurl = 'https://team5-mud.herokuapp.com';  // whats wrong here???
+        const herokurl = 'https://team5-mud.herokuapp.com';
 
         axios({
             url: `${herokurl}/api/adv/move`, // confirm this is the correct path
@@ -116,12 +116,11 @@ class Game extends Component {
 
            if(!res.data.errorMsg){
                 this.state.rooms.forEach(room => {
-                    if(room.title === this.state.roomTitle){
+                    if(room.title === this.state.roomTitle){  // make sure it works
                         this.moveE();
                     }
                 })
             }
-    
         })
         .catch(err => {
             console.log('handleMove catch: ', err.response)
@@ -169,7 +168,7 @@ class Game extends Component {
                     <div className= 'map-container'>   
                         <div id= 'map'>
                             <div className= 'player'>
-                                <img className= 'player-icon' alt= 'Player Icon' src= 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif' />
+                                <img id= 'player-icon' alt= 'Player Icon' src= 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif' />
                             </div>
                         </div>
                     </div>
