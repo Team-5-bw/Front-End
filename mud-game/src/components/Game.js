@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Fade from 'react-reveal';
 
-import './css/game.css';
+// import './css/game.css';
 
 class Game extends Component {
     constructor(props) {
@@ -17,14 +17,31 @@ class Game extends Component {
           username: "",
           uuid: "",
           direction: "",
-          movePlayer: "",
+          movePlayer: false,
           errorMsg:"",
+          rooms: []
         };
-    }
+    };
     
     componentDidMount() {
         this.init();
         this.startE();
+
+        const herokurl = 'https://team5-mud.herokuapp.com';
+
+        axios({
+            url: `${herokurl}/api/adv/rooms`,
+            method: 'GET'
+        })
+        .then(res => {
+            console.log('rooms: ', res.data);
+            this.setState({
+                rooms: res.data.rooms
+            });
+        })
+        .catch(err => {
+            console.log('rooms catch: ', err.response)
+        });
     };
 
     pauseG = () => {
@@ -72,7 +89,7 @@ class Game extends Component {
     };
 
     handleMove = direction => {
-        const herokurl: 'https://team5-mud.herokuapp.com'  // whats wrong here???
+        const herokurl = 'https://team5-mud.herokuapp.com';  // whats wrong here???
 
         axios({
             url: `${herokurl}/api/adv/move`, // confirm this is the correct path
@@ -93,13 +110,14 @@ class Game extends Component {
                 movePlayer: true
             });
 
-            if(res.data.title === 'room_1' && !res.data.error_msg){
-                this.moveE();
-            } else if (res.data.title === 'room_2' && !!res.data.error_msg){
-                this.moveE();
+           if(!res.data.errorMsg){
+                this.state.rooms.forEach(room => {
+                    if(room.title === this.state.roomTitle){
+                        this.moveE();
+                    }
+                })
             }
-
-
+    
         })
         .catch(err => {
             console.log('handleMove catch: ', err.response)
@@ -139,7 +157,7 @@ class Game extends Component {
     };
 
     render() {
-        const room = this.state.roomTitle;
+        // const room = this.state.rooms;
 
         return (
             <Fade>

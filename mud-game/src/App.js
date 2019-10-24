@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Game from './components/Game.js';
 import Register from './components/Register.js';
 import Login from './components/Login.js';
