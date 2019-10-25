@@ -39,7 +39,7 @@ class Register extends Component {
         console.log('response', res);
         const token = res.data['key'];
         localStorage.setItem('token', `Token ${token}`);
-        this.props.history.push('/adventure');
+        this.props.history.push('/');
       })
       .catch(err => {
         console.log('Axios error:', err);
@@ -53,39 +53,46 @@ class Register extends Component {
 
   render() {
     return (
-      <form onSubmit={e => this.submitHandler(e)}>
-        Username:
-        <input
-          type='text'
-          name='username'
-          value={this.state.username}
-          onChange={this.inputChangeHandler}
-        ></input>
-        Email:
-        <input
-          type='email'
-          name='email'
-          value={this.state.email}
-          onChange={this.inputChangeHandler}
-        ></input>
-        Password:
-        <input
-          type='password'
-          name='password1'
-          value={this.state.password1}
-          onChange={this.inputChangeHandler}
-        ></input>
-        Confirm Password:
-        <input
-          type='password'
-          name='password2'
-          value={this.state.password2}
-          onChange={this.inputChangeHandler}
-        ></input>
-        <button type='submit' onSubmit={e => this.submitHandler(e)}>
-          Submit
-        </button>
-      </form>
+      <div class='register-div'>
+        <form onSubmit={e => this.submitHandler(e)}>
+          <h1>Register</h1>
+          <input
+            placeholder='Username'
+            type='text'
+            name='username'
+            value={this.state.username}
+            onChange={this.inputChangeHandler}
+          ></input>
+          <input
+            placeholder='Email'
+            type='email'
+            name='email'
+            value={this.state.email}
+            onChange={this.inputChangeHandler}
+          ></input>
+          <input
+            placeholder='Password'
+            type='password'
+            name='password1'
+            value={this.state.password1}
+            onChange={this.inputChangeHandler}
+          ></input>
+          <input
+            placeholder='Confirm password'
+            type='password'
+            name='password2'
+            value={this.state.password2}
+            onChange={this.inputChangeHandler}
+          ></input>
+          <p>
+            <input
+              type='submit'
+              value='Register'
+              onSubmit={e => this.submitHandler(e)}
+            ></input>
+          </p>
+        </form>
+      </div>
     );
   }
 }

@@ -26,218 +26,257 @@ class Game extends Component {
       rooms: []
     };
   }
-    componentDidMount() {
-        this.init();
+  componentDidMount() {
+    this.init();
 
-        const herokurl = 'https://team5-mud.herokuapp.com';
+    const herokurl = 'https://team5-mud.herokuapp.com';
 
-        axios({
-            url: `${herokurl}/api/adv/rooms`,
-            method: 'GET'
-        })
-        .then(res => {
-            console.log('rooms: ', res.data);
-            this.setState({
-                rooms: res.data.rooms,
-            });
-        })
-        .catch(err => {
-            console.log('rooms catch: ', err.response)
+    axios({
+      url: `${herokurl}/api/adv/rooms`,
+      method: 'GET'
+    })
+      .then(res => {
+        console.log('rooms: ', res.data);
+        this.setState({
+          rooms: res.data.rooms
         });
-    };
+      })
+      .catch(err => {
+        console.log('rooms catch: ', err.response);
+      });
+  }
 
-    // pauseG = () => {
-    //     this.clickE();
-    //     this.pauseE();
+  // pauseG = () => {
+  //     this.clickE();
+  //     this.pauseE();
 
-    //     document.addEventListener('click', this.resumeE())
-    // };
+  //     document.addEventListener('click', this.resumeE())
+  // };
 
-    // logout = () => {
-    //     this.clickE();
-    //     this.ejectE();
+  // logout = () => {
+  //     this.clickE();
+  //     this.ejectE();
 
-    //     setTimeout(() =>{
-    //         localStorage.removeItem('token');
-    //         window.location.assign('/');
-    //     }, 3000);
-    // };
+  //     setTimeout(() =>{
+  //         localStorage.removeItem('token');
+  //         window.location.assign('/');
+  //     }, 3000);
+  // };
 
-    init = () => {
-        const herokurl = 'https://team5-mud.herokuapp.com';
-        const key = localStorage.getItem('token');
+  init = () => {
+    const herokurl = 'https://team5-mud.herokuapp.com';
+    const key = localStorage.getItem('token');
 
-        axios({
-            url: `${herokurl}/api/adv/init`,
-            method: 'GET',
-            headers: {
-                Authorization: `${key}`
-            }
-        })
-        .then(res => {
-            console.log('init: ', res.data);
-            this.setState({
-                playerName: res.data.name,
-                roomTitle: res.data.title,
-                roomDescription: res.data.description,
-                roomPlayers: res.data.players,
-                uuid: res.data.uuid,
-                token: key
-            });
-        })
-        .catch(err => {
-            console.log('init catch: ', err.response)
+    axios({
+      url: `${herokurl}/api/adv/init`,
+      method: 'GET',
+      headers: {
+        Authorization: `${key}`
+      }
+    })
+      .then(res => {
+        console.log('init: ', res.data);
+        this.setState({
+          playerName: res.data.name,
+          roomTitle: res.data.title,
+          roomDescription: res.data.description,
+          roomPlayers: res.data.players,
+          uuid: res.data.uuid,
+          token: key
         });
-    };
+      })
+      .catch(err => {
+        console.log('init catch: ', err.response);
+      });
+  };
 
-    handleMove = direction => {
-        const herokurl = 'https://team5-mud.herokuapp.com';
-
-        axios({
-            url: `${herokurl}/api/adv/move`,
-            method: 'POST',
-            headers: {
-                Authorization: `${this.state.token}`
-            },
-            data: {
-                direction: direction 
-            }  
-        })
-        .then(res => {
-            this.setState({
-                roomTitle: res.data.title,
-                roomDescription: res.data.description,
-                roomPlayers: res.data.players,
-                errorMsg: res.data.error_msg,
-                movePlayer: true,
-                roomNum: this.data.room_number
-            });
-
-        })
-        .catch(err => {
-            console.log('handleMove catch: ', err.response)
+  handleMove = direction => {
+    const herokurl = 'https://team5-mud.herokuapp.com';
+    console.log(this.state);
+    axios({
+      url: `${herokurl}/api/adv/move`,
+      method: 'POST',
+      headers: {
+        Authorization: `${this.state.token}`
+      },
+      data: {
+        direction: direction
+      }
+    })
+      .then(res => {
+        this.setState({
+          roomTitle: res.data.title,
+          roomDescription: res.data.description,
+          roomPlayers: res.data.players,
+          errorMsg: res.data.error_msg,
+          movePlayer: true,
+          roomNum: res.data.room_number
         });
-    };
+      })
+      .catch(err => {
+        console.log('handleMove catch: ', err);
+      });
+  };
 
-    // clickE = () => {
-    //     document.getElementById('click');
-    // };
+  // clickE = () => {
+  //     document.getElementById('click');
+  // };
 
-    // moveE = () => {
-    //     document.getElementById('move');
-    // };
+  // moveE = () => {
+  //     document.getElementById('move');
+  // };
 
-    // ejectE = () => {
-    //     document.getElementById('eject');
-    // };
+  // ejectE = () => {
+  //     document.getElementById('eject');
+  // };
 
-    // startE = () => {
-    //     document.getElementById('start');
-    // };
+  // startE = () => {
+  //     document.getElementById('start');
+  // };
 
-    // errorE = () => {
-    //     document.getElementById('error');
-    // };
+  // errorE = () => {
+  //     document.getElementById('error');
+  // };
 
-    // pauseE = () => {
-    //     document.getElementById('pause');
-    // };
+  // pauseE = () => {
+  //     document.getElementById('pause');
+  // };
 
-    // resumeE = () => {
-    //     document.getElementById('resume');
-    // };
-    
-    handleInputChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
+  // resumeE = () => {
+  //     document.getElementById('resume');
+  // };
 
-    render() {
-        const room = this.state.roomTitle;
-        const player = 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif'
-        return (
-            <Fade>
-                <div className= 'main-container'>
-                    <div className= 'map-container'>   
-                        <div id= 'map'>
-                            <div className= 'player'>
-                                {room === 'room_1' ? (
-                                    <img 
-                                    id= 'player-icon1' 
-                                    className= 'player-icon'
-                                    src= {player}
-                                    width= '45px'
-                                    height= 'auto' />        
-                                ) : ( "" )
-                                }
-                                {room === 'room_2' ? (
-                                    <img 
-                                    id= 'player-icon2' 
-                                    className= 'player-icon'
-                                    src= {player}
-                                    width= '45px'
-                                    height= 'auto' />        
-                                ) : ( "" )
-                                }
-                                {room === 'room_15' ? (
-                                    <img 
-                                    id= 'player-icon3' 
-                                    className= 'player-icon'
-                                    src= {player}
-                                    width= '45px'
-                                    height= 'auto' />        
-                                ) : ( "" )
-                                }
-                                {room === 'room_14' ? (
-                                    <img 
-                                    id= 'player-icon4' 
-                                    className= 'player-icon'
-                                    src= {player}
-                                    width= '45px'
-                                    height= 'auto' />        
-                                ) : ( "" )
-                                }
-                                {room === 'room_24' ? (
-                                    <img 
-                                    id= 'player-icon5' 
-                                    className= 'player-icon'
-                                    src= {player}
-                                    width= '45px'
-                                    height= 'auto' />        
-                                ) : ( "" )
-                                }
-                            </div>
-                        </div>
-                    </div>
-                      <div className= 'right-container'>
-                        <div className='top-container'>
-                            <h3>>> {this.state.roomTitle}</h3>
-                            <p>>> {this.state.roomDescription}</p>
-                            <p>
-                              >> Players here:{' '}
-                              {this.state.roomPlayers.map((item, index) => {
-                                if (index === this.state.roomPlayers.length - 1) {
-                                  return <>{item}</>;
-                                }
-                                return <>{item}, </>;
-                              })}
-                            </p>
-                            {this.state.errorMsg ? this.errorE() : ''}
-                            {/* <p>top container</p> */}
-                            {/* here goes the screen with the messages */}
-                        </div>  
-                        <div className= 'bottom-container'>
-                            <div className= 'arrows-cont'>
-                                <img id= 'arrow-w' alt= 'Arrow West' src= {ArrowW} onClick= {() => this.handleMove('w')}/>
-                                <img id= 'arrow-n' alt= 'Arrow North' src= {ArrowN} onClick= {() => this.handleMove('n')}/>
-                                <img id= 'arrow-s' alt= 'Arrow South' src= {ArrowS} onClick= {() => this.handleMove('s')}/>
-                                <img id= 'arrow-e' alt= 'Arrow East' src= {ArrowE} onClick= {() => this.handleMove('e')} />
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-            </Fade>
-        )
-    }
-};
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  render() {
+    const room = this.state.roomTitle;
+    const player = 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif';
+    return (
+      <Fade>
+        <div className='main-container'>
+          <div className='map-container'>
+            <div id='map'>
+              <div className='player'>
+                {room === 'room_1' ? (
+                  <img
+                    id='player-icon1'
+                    className='player-icon'
+                    src={player}
+                    width='45px'
+                    height='auto'
+                  />
+                ) : (
+                  ''
+                )}
+                {room === 'room_2' ? (
+                  <img
+                    id='player-icon2'
+                    className='player-icon'
+                    src={player}
+                    width='45px'
+                    height='auto'
+                  />
+                ) : (
+                  ''
+                )}
+                {room === 'room_15' ? (
+                  <img
+                    id='player-icon3'
+                    className='player-icon'
+                    src={player}
+                    width='45px'
+                    height='auto'
+                  />
+                ) : (
+                  ''
+                )}
+                {room === 'room_14' ? (
+                  <img
+                    id='player-icon4'
+                    className='player-icon'
+                    src={player}
+                    width='45px'
+                    height='auto'
+                  />
+                ) : (
+                  ''
+                )}
+                {room === 'room_24' ? (
+                  <img
+                    id='player-icon5'
+                    className='player-icon'
+                    src={player}
+                    width='45px'
+                    height='auto'
+                  />
+                ) : (
+                  ''
+                )}
+              </div>
+            </div>
+          </div>
+          <div className='right-container'>
+            <div className='top-container'>
+              <h3>>> {this.state.roomTitle}</h3>
+              <p>>> {this.state.roomDescription}</p>
+              <p>
+                >> Players here:{' '}
+                {this.state.roomPlayers.map((item, index) => {
+                  if (index === this.state.roomPlayers.length - 1) {
+                    return <>{item}</>;
+                  }
+                  return <>{item}, </>;
+                })}
+              </p>
+              {this.state.errorMsg ? this.errorE() : ''}
+              {/* <p>top container</p> */}
+              {/* here goes the screen with the messages */}
+            </div>
+            <div className='bottom-container'>
+              <div className='arrows-cont'>
+                <img
+                  id='arrow-w'
+                  alt='Arrow West'
+                  src={ArrowW}
+                  onClick={() => this.handleMove('w')}
+                />
+                <img
+                  id='arrow-n'
+                  alt='Arrow North'
+                  src={ArrowN}
+                  onClick={() => this.handleMove('n')}
+                />
+                <img
+                  id='arrow-s'
+                  alt='Arrow South'
+                  src={ArrowS}
+                  onClick={() => this.handleMove('s')}
+                />
+                <img
+                  id='arrow-e'
+                  alt='Arrow East'
+                  src={ArrowE}
+                  onClick={() => this.handleMove('e')}
+                />
+              </div>
+              <button
+                id='logout'
+                value='logout'
+                onClick={() => {
+                  window.localStorage.clear();
+                  this.props.history.push('/login');
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </Fade>
+    );
+  }
+}
 
 export default Game;
