@@ -14,7 +14,7 @@ h5 {
 }
 .right-container {
   width: 40%;
-  padding-right: 35px; 
+  padding-right: 35px;
 }
 .top-container {
   width: 100%;
@@ -31,6 +31,7 @@ h5 {
   text-shadow: 0 0 5px #c8c8c8;
 }
 .bottom-container {
+  position: relative;
   width: 100%;
   height: 49%;
   display: flex;
@@ -74,35 +75,35 @@ h5 {
     border-radius: 50%;
 } 
 #arrow-s:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 #arrow-e:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 #arrow-w:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 .player-icon {
-    width: 45px;
-    height: auto;
+  width: 45px;
+  height: auto;
 }
 #player-icon1 {
-    position: relative;
-    left: 50%;
+  position: relative;
+  left: 50%;
 }
 #player-icon2 {
-    position: relative;
-    left: 180%;
+  position: relative;
+  left: 180%;
 }
 #player-icon3 {
-    position: relative;
-    left: 210%;
-    top: 140%;
+  position: relative;
+  left: 210%;
+  top: 140%;
 }
 #player-icon4 {
-    position: relative;
-    left: 130%;
-    top: 140%;
+  position: relative;
+  left: 130%;
+  top: 140%;
 }
 #player-icon5 {
     position: relative;
@@ -638,4 +639,23 @@ h5 {
     position: relative;
     left: 851%;
     top: 866%;
+}
+
+#logout {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 5px;
+  padding: 0 10px;
+  width: 200px;
+  height: 34px;
+  color: white;
+  background: black;
+  border: 1px solid;
+  border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+  border-radius: 10px;
+  outline: 5px solid #eff4f7;
+  -moz-outline-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
 }

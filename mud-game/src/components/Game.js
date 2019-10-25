@@ -26,25 +26,42 @@ class Game extends Component {
       rooms: []
     };
   }
-    componentDidMount() {
-        this.init();
+  componentDidMount() {
+    this.init();
 
-        const herokurl = 'https://team5-mud.herokuapp.com';
+    const herokurl = 'https://team5-mud.herokuapp.com';
 
-        axios({
-            url: `${herokurl}/api/adv/rooms`,
-            method: 'GET'
-        })
-        .then(res => {
-            console.log('rooms: ', res.data);
-            this.setState({
-                rooms: res.data.rooms,
-            });
-        })
-        .catch(err => {
-            console.log('rooms catch: ', err.response)
+    axios({
+      url: `${herokurl}/api/adv/rooms`,
+      method: 'GET'
+    })
+      .then(res => {
+        console.log('rooms: ', res.data);
+        this.setState({
+          rooms: res.data.rooms
         });
-    };
+      })
+      .catch(err => {
+        console.log('rooms catch: ', err.response);
+      });
+  }
+
+  // pauseG = () => {
+  //     this.clickE();
+  //     this.pauseE();
+
+  //     document.addEventListener('click', this.resumeE())
+  // };
+
+  // logout = () => {
+  //     this.clickE();
+  //     this.ejectE();
+
+  //     setTimeout(() =>{
+  //         localStorage.removeItem('token');
+  //         window.location.assign('/');
+  //     }, 3000);
+  // };
 
     init = () => {
         const herokurl = 'https://team5-mud.herokuapp.com';
@@ -72,7 +89,6 @@ class Game extends Component {
             console.log('init catch: ', err.response)
         });
     };
-
     handleMove = direction => {
         const herokurl = 'https://team5-mud.herokuapp.com';
 
@@ -1138,6 +1154,15 @@ class Game extends Component {
                                 <img id= 'arrow-n' alt= 'Arrow North' src= {ArrowN} width= '130px' height= 'auto' onClick= {() => this.handleMove('n')}/>
                                 <img id= 'arrow-s' alt= 'Arrow South' src= {ArrowS} width= '130px' height= 'auto' onClick= {() => this.handleMove('s')}/>
                                 <img id= 'arrow-e' alt= 'Arrow East' src= {ArrowE} width= '130px' height= 'auto' onClick= {() => this.handleMove('e')} />
+                                <button
+                                    id='logout'
+                                    value='logout'
+                                    onClick={() => {
+                                    window.localStorage.clear();
+                                    this.props.history.push('/login');
+                                    }}
+                                > Logout
+                                </button>
                             </div> 
                         </div>
                     </div>
