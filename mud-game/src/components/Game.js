@@ -46,23 +46,6 @@ class Game extends Component {
         });
     };
 
-    // pauseG = () => {
-    //     this.clickE();
-    //     this.pauseE();
-
-    //     document.addEventListener('click', this.resumeE())
-    // };
-
-    // logout = () => {
-    //     this.clickE();
-    //     this.ejectE();
-
-    //     setTimeout(() =>{
-    //         localStorage.removeItem('token');
-    //         window.location.assign('/');
-    //     }, 3000);
-    // };
-
     init = () => {
         const herokurl = 'https://team5-mud.herokuapp.com';
         const key = localStorage.getItem('token');
@@ -118,34 +101,6 @@ class Game extends Component {
             console.log('handleMove catch: ', err.response)
         });
     };
-
-    // clickE = () => {
-    //     document.getElementById('click');
-    // };
-
-    // moveE = () => {
-    //     document.getElementById('move');
-    // };
-
-    // ejectE = () => {
-    //     document.getElementById('eject');
-    // };
-
-    // startE = () => {
-    //     document.getElementById('start');
-    // };
-
-    errorE = () => {
-        document.getElementById('error');
-    };
-
-    // pauseE = () => {
-    //     document.getElementById('pause');
-    // };
-
-    // resumeE = () => {
-    //     document.getElementById('resume');
-    // };
     
     handleInputChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -1179,10 +1134,10 @@ class Game extends Component {
                         </div>  
                         <div className= 'bottom-container'>
                             <div className= 'arrows-cont'>
-                                <img id= 'arrow-w' alt= 'Arrow West' src= {ArrowW} onClick= {() => this.handleMove('w')}/>
-                                <img id= 'arrow-n' alt= 'Arrow North' src= {ArrowN} onClick= {() => this.handleMove('n')}/>
-                                <img id= 'arrow-s' alt= 'Arrow South' src= {ArrowS} onClick= {() => this.handleMove('s')}/>
-                                <img id= 'arrow-e' alt= 'Arrow East' src= {ArrowE} onClick= {() => this.handleMove('e')} />
+                                <img id= 'arrow-w' alt= 'Arrow West' src= {ArrowW} width= '130px' height= 'auto' onClick= {() => this.handleMove('w')}/>
+                                <img id= 'arrow-n' alt= 'Arrow North' src= {ArrowN} width= '130px' height= 'auto' onClick= {() => this.handleMove('n')}/>
+                                <img id= 'arrow-s' alt= 'Arrow South' src= {ArrowS} width= '130px' height= 'auto' onClick= {() => this.handleMove('s')}/>
+                                <img id= 'arrow-e' alt= 'Arrow East' src= {ArrowE} width= '130px' height= 'auto' onClick= {() => this.handleMove('e')} />
                             </div> 
                         </div>
                     </div>
