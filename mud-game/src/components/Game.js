@@ -9,22 +9,21 @@ import ArrowS from '../images/arrow-s.png';
 import ArrowE from '../images/arrow-e.png';
 
 class Game extends Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          token: "",
-          playerName: "",
-          roomTitle: "",
-          roomDescription: "",
-          roomPlayers: "",
-          username: "",
-          uuid: "",
-          direction: "",
-          movePlayer: false,
-          errorMsg:"",
-          rooms: []
-        };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      token: '',
+      playerName: '',
+      roomTitle: '',
+      roomDescription: '',
+      roomPlayers: [],
+      username: '',
+      uuid: '',
+      direction: '',
+      movePlayer: false,
+      errorMsg: '',
+      rooms: []
     };
     
     componentDidMount() {
@@ -184,12 +183,23 @@ class Game extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className= 'right-container'>
-                        <div className= 'top-container'> 
-                            {this.state.errorMsg ? this.errorE(): ""}
-                            <p>top container</p>
+                      <div className= 'right-container'>
+                        <div className='top-container'>
+                            <h3>{this.state.roomTitle}</h3>
+                            <p>{this.state.roomDescription}</p>
+                            <p>
+                              Players here:{' '}
+                              {this.state.roomPlayers.map((item, index) => {
+                                if (index === this.state.roomPlayers.length - 1) {
+                                  return <>{item}</>;
+                                }
+                                return <>{item}, </>;
+                              })}
+                            </p>
+                            {this.state.errorMsg ? this.errorE() : ''}
+                            {/* <p>top container</p> */}
                             {/* here goes the screen with the messages */}
-                        </div>    
+                        </div>  
                         <div className= 'bottom-container'>
                             <div className= 'arrows-cont'>
                                 <img id= 'arrow-w' alt= 'Arrow West' src= {ArrowW} onClick= {() => this.handleMove('w')}/>
