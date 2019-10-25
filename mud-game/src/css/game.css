@@ -33,32 +33,41 @@ h5 {
   height: 49%;
   border: 2px solid red;
 }
-.arrows-cont {
-  display: flex;
-  /* align-items: center; */
-}
-#arrow-n {
-  align-items: flex-start;
-}
-#arrow-s {
-  align-items: flex-end;
-}
-#arrow-e {
-  justify-content: flex-end;
-}
-
 .map-container {
   width: 584px;
   height: 700px;
   margin: 0 20px 0 20px;
   border: 2px solid blue;
 }
-#map {
-  background: url('../images/map-img.png');
-  width: 100%;
-  height: 100%;
+
+#map{
+    background: url('../images/map-img.png');
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(11, 1fr);
 }
-#player-icon {
-  width: 45px;
-  height: auto;
+#arrow-n:hover {
+    cursor: pointer;
+}
+  
+#arrow-s:hover {
+    cursor: pointer;
+}
+#arrow-e:hover {
+    cursor: pointer;
+}
+#arrow-w:hover {
+    cursor: pointer;
+}
+.player-icon {
+    width: 45px;
+    height: auto;
+}
+#player-icon1 {
+    position: relative;
+}
+#player-icon2 {
+    position: relative;
 }

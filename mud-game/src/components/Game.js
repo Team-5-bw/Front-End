@@ -25,186 +25,194 @@ class Game extends Component {
       errorMsg: '',
       rooms: []
     };
-  }
+    
+    componentDidMount() {
+        this.init();
 
-  componentDidMount() {
-    this.init();
-    this.startE();
+        const herokurl = 'https://team5-mud.herokuapp.com';
 
-    const herokurl = 'https://team5-mud.herokuapp.com';
-    axios({
-      url: `${herokurl}/api/adv/rooms`,
-      method: 'GET'
-    })
-      .then(res => {
-        console.log('rooms: ', res.data);
-        this.setState({
-          rooms: res.data.rooms
+        axios({
+            url: `${herokurl}/api/adv/rooms`,
+            method: 'GET'
+        })
+        .then(res => {
+            console.log('rooms: ', res.data);
+            this.setState({
+                rooms: res.data.rooms
+            });
+        })
+        .catch(err => {
+            console.log('rooms catch: ', err.response)
         });
-      })
-      .catch(err => {
-        console.log('rooms catch: ', err.response);
-      });
-  }
+    };
 
-  pauseG = () => {
-    this.clickE();
-    this.pauseE();
+    // pauseG = () => {
+    //     this.clickE();
+    //     this.pauseE();
 
-    document.addEventListener('click', this.resumeE());
-  };
+    //     document.addEventListener('click', this.resumeE())
+    // };
 
-  logout = () => {
-    this.clickE();
-    this.ejectE();
+    // logout = () => {
+    //     this.clickE();
+    //     this.ejectE();
 
-    setTimeout(() => {
-      localStorage.removeItem('token');
-      window.location.assign('/');
-    }, 3000);
-  };
+    //     setTimeout(() =>{
+    //         localStorage.removeItem('token');
+    //         window.location.assign('/');
+    //     }, 3000);
+    // };
 
-  init = () => {
-    const herokurl = 'https://team5-mud.herokuapp.com';
-    const key = localStorage.getItem('token');
+    init = () => {
+        const herokurl = 'https://team5-mud.herokuapp.com';
+        const key = localStorage.getItem('token');
 
-    axios({
-      url: `${herokurl}/api/adv/init`, // confirm this is the right path
-      method: 'GET',
-      headers: {
-        Authorization: `${key}`
-      }
-    })
-      .then(res => {
-        console.log('init: ', res.data);
-        this.setState({
-          playerName: res.data.name,
-          roomTitle: res.data.title,
-          roomDescription: res.data.description,
-          roomPlayers: res.data.players,
-          uuid: res.data.uuid,
-          token: key
-        });
-      })
-      .catch(err => {
-        console.log('init catch: ', err);
-      });
-  };
-
-  handleMove = direction => {
-    const herokurl = 'https://team5-mud.herokuapp.com';
-
-    axios({
-      url: `${herokurl}/api/adv/move`, // confirm this is the correct path
-      method: 'POST',
-      headers: {
-        Authorization: `${this.state.token}`
-      },
-      data: {
-        direction: direction
-      }
-    })
-      .then(res => {
-        this.setState({
-          roomTitle: res.data.title,
-          roomDescription: res.data.description,
-          roomPlayers: res.data.players,
-          errorMsg: res.data.error_msg,
-          movePlayer: true
-        });
-
-        if (!res.data.errorMsg) {
-          this.state.rooms.forEach(room => {
-            if (room.title === this.state.roomTitle) {
-              // make sure it works
-              this.moveE();
+        axios({
+            url: `${herokurl}/api/adv/init`,
+            method: 'GET',
+            headers: {
+                Authorization: `${key}`
             }
-          });
-        }
-      })
-      .catch(err => {
-        console.log('handleMove catch: ', err.response);
-      });
-  };
+        })
+        .then(res => {
+            console.log('init: ', res.data);
+            this.setState({
+                playerName: res.data.name,
+                roomTitle: res.data.title,
+                roomDescription: res.data.description,
+                roomPlayers: res.data.players,
+                uuid: res.data.uuid,
+                token: key
+            });
+        })
+        .catch(err => {
+            console.log('init catch: ', err.response)
+        });
+    };
 
-  clickE = () => {
-    document.getElementById('click');
-  };
+    handleMove = direction => {
+        const herokurl = 'https://team5-mud.herokuapp.com';
 
-  moveE = () => {
-    document.getElementById('move');
-  };
+        axios({
+            url: `${herokurl}/api/adv/move`,
+            method: 'POST',
+            headers: {
+                Authorization: `${this.state.token}`
+            },
+            data: {
+                direction: direction 
+            }  
+        })
+        .then(res => {
+            this.setState({
+                roomTitle: res.data.title,
+                roomDescription: res.data.description,
+                roomPlayers: res.data.players,
+                errorMsg: res.data.error_msg,
+                movePlayer: true,
+                roomNum: this.data.room_number
+            });
 
-  ejectE = () => {
-    document.getElementById('eject');
-  };
+        })
+        .catch(err => {
+            console.log('handleMove catch: ', err.response)
+        });
+    };
 
-  startE = () => {
-    document.getElementById('start');
-  };
+    // clickE = () => {
+    //     document.getElementById('click');
+    // };
 
-  errorE = () => {
-    document.getElementById('error');
-  };
+    // moveE = () => {
+    //     document.getElementById('move');
+    // };
 
-  pauseE = () => {
-    document.getElementById('pause');
-  };
+    // ejectE = () => {
+    //     document.getElementById('eject');
+    // };
 
-  resumeE = () => {
-    document.getElementById('resume');
-  };
+    // startE = () => {
+    //     document.getElementById('start');
+    // };
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+    // errorE = () => {
+    //     document.getElementById('error');
+    // };
 
-  render() {
-    // const room = this.state.rooms;
-    return (
-      <Fade>
-        <div className='main-container'>
-          <div className='map-container'>
-            <div id='map'>
-              <div className='player'>
-                <img
-                  id='player-icon'
-                  alt='Player Icon'
-                  src='https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif'
-                />
-              </div>
-            </div>
-          </div>
-          <div className='right-container'>
-            <div className='top-container'>
-              <h3>{this.state.roomTitle}</h3>
-              <p>{this.state.roomDescription}</p>
-              <p>
-                Players here:{' '}
-                {this.state.roomPlayers.map((item, index) => {
-                  if (index === this.state.roomPlayers.length - 1) {
-                    return <>{item}</>;
-                  }
-                  return <>{item}, </>;
-                })}
-              </p>
-              {this.state.errorMsg ? this.errorE() : ''}
-              {/* <p>top container</p> */}
-              {/* here goes the screen with the messages */}
-            </div>
-            <div className='bottom-container'>
-              <div className='arrows-cont'>
-                <img id='arrow-w' alt='Arrow West' src={ArrowW} />
-                <img id='arrow-n' alt='Arrow North' src={ArrowN} />
-                <img id='arrow-s' alt='Arrow South' src={ArrowS} />
-                <img id='arrow-e' alt='Arrow East' src={ArrowE} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </Fade>
-    );
-  }
-}
+    // pauseE = () => {
+    //     document.getElementById('pause');
+    // };
+
+    // resumeE = () => {
+    //     document.getElementById('resume');
+    // };
+    
+    handleInputChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+
+    render() {
+        const room = this.state.title;
+        const player = 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif'
+        return (
+            <Fade>
+                <div className= 'main-container'>
+                    <div className= 'map-container'>   
+                        <div id= 'map'>
+                            <div className= 'player'>
+                            
+                                {room === 'room_1' ? (
+                                    ""        
+                                ) : ( <img 
+                                    id= 'player-icon1' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' /> )
+                                }
+                                {room === 'room_2' ? (
+                                    ""       
+                                ) : (
+                                    <img 
+                                    id= 'player-icon2' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' /> 
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                      <div className= 'right-container'>
+                        <div className='top-container'>
+                            <h3>{this.state.roomTitle}</h3>
+                            <p>{this.state.roomDescription}</p>
+                            <p>
+                              Players here:{' '}
+                              {this.state.roomPlayers.map((item, index) => {
+                                if (index === this.state.roomPlayers.length - 1) {
+                                  return <>{item}</>;
+                                }
+                                return <>{item}, </>;
+                              })}
+                            </p>
+                            {this.state.errorMsg ? this.errorE() : ''}
+                            {/* <p>top container</p> */}
+                            {/* here goes the screen with the messages */}
+                        </div>  
+                        <div className= 'bottom-container'>
+                            <div className= 'arrows-cont'>
+                                <img id= 'arrow-w' alt= 'Arrow West' src= {ArrowW} onClick= {() => this.handleMove('w')}/>
+                                <img id= 'arrow-n' alt= 'Arrow North' src= {ArrowN} onClick= {() => this.handleMove('n')}/>
+                                <img id= 'arrow-s' alt= 'Arrow South' src= {ArrowS} onClick= {() => this.handleMove('s')}/>
+                                <img id= 'arrow-e' alt= 'Arrow East' src= {ArrowE} onClick= {() => this.handleMove('e')} />
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </Fade>
+        )
+    }
+};
 
 export default Game;

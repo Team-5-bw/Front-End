@@ -13,7 +13,7 @@ class App extends Component {
       <Switch>
         <Route path='/register' component= {Register} />
         <Route path='/login' component={Login} />}
-        <Route /*ProtectedRoute*/ path='/' component= {Game} />
+        <Route path='/' component= {Game} />
       </Switch>
     );
   }
