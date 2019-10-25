@@ -25,7 +25,7 @@ class Game extends Component {
       errorMsg: '',
       rooms: []
     };
-    
+  }
     componentDidMount() {
         this.init();
 
@@ -38,7 +38,7 @@ class Game extends Component {
         .then(res => {
             console.log('rooms: ', res.data);
             this.setState({
-                rooms: res.data.rooms
+                rooms: res.data.rooms,
             });
         })
         .catch(err => {
@@ -152,7 +152,7 @@ class Game extends Component {
     };
 
     render() {
-        const room = this.state.title;
+        const room = this.state.roomTitle;
         const player = 'https://media.giphy.com/media/1wpOBJ3x8uqclnClZv/giphy.gif'
         return (
             <Fade>
@@ -160,35 +160,60 @@ class Game extends Component {
                     <div className= 'map-container'>   
                         <div id= 'map'>
                             <div className= 'player'>
-                            
                                 {room === 'room_1' ? (
-                                    ""        
-                                ) : ( <img 
+                                    <img 
                                     id= 'player-icon1' 
                                     className= 'player-icon'
                                     src= {player}
                                     width= '45px'
-                                    height= 'auto' /> )
+                                    height= 'auto' />        
+                                ) : ( "" )
                                 }
                                 {room === 'room_2' ? (
-                                    ""       
-                                ) : (
                                     <img 
                                     id= 'player-icon2' 
                                     className= 'player-icon'
                                     src= {player}
                                     width= '45px'
-                                    height= 'auto' /> 
-                                )}
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_15' ? (
+                                    <img 
+                                    id= 'player-icon3' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_14' ? (
+                                    <img 
+                                    id= 'player-icon4' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_24' ? (
+                                    <img 
+                                    id= 'player-icon5' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
                             </div>
                         </div>
                     </div>
                       <div className= 'right-container'>
                         <div className='top-container'>
-                            <h3>{this.state.roomTitle}</h3>
-                            <p>{this.state.roomDescription}</p>
+                            <h3>>> {this.state.roomTitle}</h3>
+                            <p>>> {this.state.roomDescription}</p>
                             <p>
-                              Players here:{' '}
+                              >> Players here:{' '}
                               {this.state.roomPlayers.map((item, index) => {
                                 if (index === this.state.roomPlayers.length - 1) {
                                   return <>{item}</>;
