@@ -29,7 +29,6 @@ class Game extends Component {
     
     componentDidMount() {
         this.init();
-        this.startE();
 
         const herokurl = 'https://team5-mud.herokuapp.com';
 
@@ -48,22 +47,22 @@ class Game extends Component {
         });
     };
 
-    pauseG = () => {
-        this.clickE();
-        this.pauseE();
+    // pauseG = () => {
+    //     this.clickE();
+    //     this.pauseE();
 
-        document.addEventListener('click', this.resumeE())
-    };
+    //     document.addEventListener('click', this.resumeE())
+    // };
 
-    logout = () => {
-        this.clickE();
-        this.ejectE();
+    // logout = () => {
+    //     this.clickE();
+    //     this.ejectE();
 
-        setTimeout(() =>{
-            localStorage.removeItem('token');
-            window.location.assign('/');
-        }, 3000);
-    };
+    //     setTimeout(() =>{
+    //         localStorage.removeItem('token');
+    //         window.location.assign('/');
+    //     }, 3000);
+    // };
 
     init = () => {
         const herokurl = 'https://team5-mud.herokuapp.com';
@@ -115,46 +114,39 @@ class Game extends Component {
                 roomNum: this.data.room_number
             });
 
-           if(!res.data.errorMsg){
-                this.state.rooms.forEach(room => {
-                    if(room.room_number === this.state.roomNum){  // make sure it works
-                        this.moveE();
-                    }
-                })
-            }
         })
         .catch(err => {
             console.log('handleMove catch: ', err.response)
         });
     };
 
-    clickE = () => {
-        document.getElementById('click');
-    };
+    // clickE = () => {
+    //     document.getElementById('click');
+    // };
 
-    moveE = () => {
-        document.getElementById('move');
-    };
+    // moveE = () => {
+    //     document.getElementById('move');
+    // };
 
-    ejectE = () => {
-        document.getElementById('eject');
-    };
+    // ejectE = () => {
+    //     document.getElementById('eject');
+    // };
 
-    startE = () => {
-        document.getElementById('start');
-    };
+    // startE = () => {
+    //     document.getElementById('start');
+    // };
 
-    errorE = () => {
-        document.getElementById('error');
-    };
+    // errorE = () => {
+    //     document.getElementById('error');
+    // };
 
-    pauseE = () => {
-        document.getElementById('pause');
-    };
+    // pauseE = () => {
+    //     document.getElementById('pause');
+    // };
 
-    resumeE = () => {
-        document.getElementById('resume');
-    };
+    // resumeE = () => {
+    //     document.getElementById('resume');
+    // };
     
     handleInputChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -168,18 +160,28 @@ class Game extends Component {
                 <div className= 'main-container'>
                     <div className= 'map-container'>   
                         <div id= 'map'>
-                            {/* <div className= 'player'>
-                                <img className= 'player-icon' alt= 'Player Icon' src= {player} />
-                            </div> */}
-                            {room === 'room_1' ? (
-                                <img 
+                            <div className= 'player'>
+                            
+                                {room === 'room_1' ? (
+                                    ""        
+                                ) : ( <img 
                                     id= 'player-icon1' 
                                     className= 'player-icon'
-                                    src= {player} />
-                                    
-                            ) : (
-                              "" 
-                            )};
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' /> )
+                                }
+                                {room === 'room_2' ? (
+                                    ""       
+                                ) : (
+                                    <img 
+                                    id= 'player-icon2' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' /> 
+                                )}
+                            </div>
                         </div>
                     </div>
                     <div className= 'right-container'>
