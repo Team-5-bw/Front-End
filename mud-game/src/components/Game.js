@@ -110,7 +110,7 @@ class Game extends Component {
                 roomPlayers: res.data.players,
                 errorMsg: res.data.error_msg,
                 movePlayer: true,
-                roomNum: this.data.room_number
+                roomNum: res.data.room_number
             });
 
         })
@@ -135,9 +135,9 @@ class Game extends Component {
     //     document.getElementById('start');
     // };
 
-    // errorE = () => {
-    //     document.getElementById('error');
-    // };
+    errorE = () => {
+        document.getElementById('error');
+    };
 
     // pauseE = () => {
     //     document.getElementById('pause');
@@ -205,6 +205,366 @@ class Game extends Component {
                                     height= 'auto' />        
                                 ) : ( "" )
                                 }
+                                {room === 'room_10' ? (
+                                    <img 
+                                    id= 'player-icon6' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_23' ? (
+                                    <img 
+                                    id= 'player-icon7' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_20' ? (
+                                    <img 
+                                    id= 'player-icon8' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_29' ? (
+                                    <img 
+                                    id= 'player-icon9' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_37' ? (
+                                    <img 
+                                    id= 'player-icon10' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_52' ? (
+                                    <img 
+                                    id= 'player-icon11' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_64' ? (
+                                    <img 
+                                    id= 'player-icon12' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_80' ? (
+                                    <img 
+                                    id= 'player-icon13' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_82' ? (
+                                    <img 
+                                    id= 'player-icon14' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_34' ? (
+                                    <img 
+                                    id= 'player-icon15' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_44' ? (
+                                    <img 
+                                    id= 'player-icon16' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_45' ? (
+                                    <img 
+                                    id= 'player-icon17' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_38' ? (
+                                    <img 
+                                    id= 'player-icon18' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_30' ? (
+                                    <img 
+                                    id= 'player-icon19' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_39' ? (
+                                    <img 
+                                    id= 'player-icon20' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_55' ? (
+                                    <img 
+                                    id= 'player-icon21' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_54' ? (
+                                    <img 
+                                    id= 'player-icon22' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_53' ? (
+                                    <img 
+                                    id= 'player-icon23' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_60' ? (
+                                    <img 
+                                    id= 'player-icon24' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_61' ? (
+                                    <img 
+                                    id= 'player-icon25' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_69' ? (
+                                    <img 
+                                    id= 'player-icon26' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_75' ? (
+                                    <img 
+                                    id= 'player-icon27' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_71' ? (
+                                    <img 
+                                    id= 'player-icon28' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_70' ? (
+                                    <img 
+                                    id= 'player-icon28' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_65' ? (
+                                    <img 
+                                    id= 'player-icon29' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_76' ? (
+                                    <img 
+                                    id= 'player-icon30' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_84' ? (
+                                    <img 
+                                    id= 'player-icon31' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_98' ? (
+                                    <img 
+                                    id= 'player-icon32' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_101' ? (
+                                    <img 
+                                    id= 'player-icon33' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_97' ? (
+                                    <img 
+                                    id= 'player-icon34' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_83' ? (
+                                    <img 
+                                    id= 'player-icon35' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_92' ? (
+                                    <img 
+                                    id= 'player-icon36' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_89' ? (
+                                    <img 
+                                    id= 'player-icon37' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_100' ? (
+                                    <img 
+                                    id= 'player-icon38' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_109' ? (
+                                    <img 
+                                    id= 'player-icon39' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_96' ? (
+                                    <img 
+                                    id= 'player-icon40' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_105' ? (
+                                    <img 
+                                    id= 'player-icon41' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_106' ? (
+                                    <img 
+                                    id= 'player-icon42' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_110' ? (
+                                    <img 
+                                    id= 'player-icon43' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
+                                {room === 'room_107' ? (
+                                    <img 
+                                    id= 'player-icon44' 
+                                    className= 'player-icon'
+                                    src= {player}
+                                    width= '45px'
+                                    height= 'auto' />        
+                                ) : ( "" )
+                                }
                             </div>
                         </div>
                     </div>
@@ -221,9 +581,7 @@ class Game extends Component {
                                 return <>{item}, </>;
                               })}
                             </p>
-                            {this.state.errorMsg ? this.errorE() : ''}
-                            {/* <p>top container</p> */}
-                            {/* here goes the screen with the messages */}
+                            {this.state.errorMsg ? '>> Wrong direction!!' : ''}
                         </div>  
                         <div className= 'bottom-container'>
                             <div className= 'arrows-cont'>
