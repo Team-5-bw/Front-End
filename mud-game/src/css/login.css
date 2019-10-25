@@ -50,7 +50,8 @@
 }
 
 .login input[type='text'],
-.login input[type='password'] {
+.login input[type='password'],
+.login input[type='email'] {
   width: 278px;
 }
 
