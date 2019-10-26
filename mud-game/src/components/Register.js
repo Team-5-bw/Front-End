@@ -42,7 +42,10 @@ class Register extends Component {
         this.props.history.push('/');
       })
       .catch(err => {
-        console.log('Axios error:', err);
+        console.log('Axios error:', err.response);
+        console.log('this state', this.state);
+        this.setState({ errorMsg: [...err.response.data.password1] });
+        console.log(this.state);
       });
   };
 
@@ -84,6 +87,11 @@ class Register extends Component {
             value={this.state.password2}
             onChange={this.inputChangeHandler}
           ></input>
+          {this.state.errorMsg
+            ? this.state.errorMsg.map(item => {
+                return <p style={{ color: 'red', fontSize: '12px' }}>{item}</p>;
+              })
+            : null}
           <p>
             <input
               type='submit'
